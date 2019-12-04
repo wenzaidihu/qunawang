@@ -14,7 +14,7 @@ import homeswiper from './components/Swiper'
 import homeicons from './components/Icons'
 import homerecommend from './components/Recommend'
 import homeweekend from './components/Weekend'
-// import axios from 'axios'
+import axios from 'axios'
 export default {
   name: 'Home',
   components: {
@@ -23,19 +23,19 @@ export default {
     homeicons,
     homerecommend,
     homeweekend
+  },
+  methods: {
+    getHomeInfo () {
+      axios.get('../../../public/mock/index.json')
+        .then(this.getHomeInfoSucc)
+    },
+    getHomeInfoSucc (res) {
+      console.log(res)
+    }
+  },
+  mounted () {
+    this.getHomeInfo()
   }
-  // methods: {
-  //   getHomeInfo () {
-  //     axios.get('../../../static/mock/index.json')
-  //       .then(this.getHomeInfoSucc)
-  //   },
-  //   getHomeInfoSucc (res) {
-  //     console.log(res)
-  //   }
-  // },
-  // mounted () {
-  //   this.getHomeInfo()
-  // }
 }
 </script>
 
