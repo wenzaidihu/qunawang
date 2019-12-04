@@ -143,7 +143,7 @@ export default {
 @import '../../../assets/styles/mixins.styl'
   .icons >>> .swiper-container
     height: 0
-    padding-bottom: 50%
+    padding-bottom: 39%
     .icon
       position: relative
       width: 20%
@@ -173,4 +173,5 @@ export default {
         text-align: center
         color: $darkTextColor
         ellipsis()
+        font-size: .12rem
 </style>
