@@ -1,10 +1,10 @@
 <template>
     <div>
-      <homeheader></homeheader>
-      <homeswiper></homeswiper>
-      <homeicons></homeicons>
-      <homerecommend></homerecommend>
-      <homeweekend></homeweekend>
+      <homeheader :city="city"></homeheader>
+      <homeswiper :list="swiperList"></homeswiper>
+      <homeicons :list="iconList"></homeicons>
+      <homerecommend :list="recommendList"></homerecommend>
+      <homeweekend :list="weekendList"></homeweekend>
     </div>
 </template>
 
@@ -24,12 +24,30 @@ export default {
     homerecommend,
     homeweekend
   },
+  data () {
+    return {
+      city: '',
+      swiperList: [],
+      iconList: [],
+      recommendList: [],
+      weekendList: []
+    }
+  },
   methods: {
     getHomeInfo () {
-      axios.get('../../../public/mock/index.json')
+      axios.get('/api/index.json')
         .then(this.getHomeInfoSucc)
     },
     getHomeInfoSucc (res) {
+      res = res.data
+      // if (res.ret && res.data) {
+      //   const data = res.data
+      //   this.city = data.city
+      //   this.swiperList = data.swiperList
+      //   this.iconList = data.iconList
+      //   this.recommendList = data.recommendList
+      //   this.weekendList = data.weekendList
+      // }
       console.log(res)
     }
   },
