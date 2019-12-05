@@ -3,7 +3,7 @@
       <homeheader :city="city"></homeheader>
       <homeswiper :list="swiperList"></homeswiper>
       <homeicons :list="iconList"></homeicons>
-      <homerecommend :list="recommendList"></homerecommend>
+      <homerecommend :list=" recommendList"></homerecommend>
       <homeweekend :list="weekendList"></homeweekend>
     </div>
 </template>
@@ -39,16 +39,16 @@ export default {
         .then(this.getHomeInfoSucc)
     },
     getHomeInfoSucc (res) {
-      res = res.data
-      // if (res.ret && res.data) {
-      //   const data = res.data
-      //   this.city = data.city
-      //   this.swiperList = data.swiperList
-      //   this.iconList = data.iconList
-      //   this.recommendList = data.recommendList
-      //   this.weekendList = data.weekendList
-      // }
-      console.log(res)
+      // res = res.data
+      if (res.data.ret && res.data.data) {
+        // const data = res.data
+        this.city = res.data.data.city
+        this.swiperList = res.data.data.swiperList
+        this.iconList = res.data.data.iconList
+        this.recommendList = res.data.data.recommendList
+        this.weekendList = res.data.data.weekendList
+      }
+      // console.log(res.data.data.city)
     }
   },
   mounted () {
