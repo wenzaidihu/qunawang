@@ -5,18 +5,12 @@
       <div class="title border-topbottom">当前城市</div>
       <div class="button-list">
         <div class="button">北京</div>
-        <div class="button">北京</div>
-        <div class="button">北京</div>
-        <div class="button">北京</div>
       </div>
     </div>
     <div class="area">
       <div class="title border-topbottom">热门城市</div>
       <div class="button-list">
-        <div class="button">北京</div>
-        <div class="button">北京</div>
-        <div class="button">北京</div>
-        <div class="button">北京</div>
+        <div class="button" v-for="(item,key) of hot" :key=key>{{item.name}}</div>
       </div>
     </div>
     <div class="area">
@@ -61,6 +55,11 @@
 import Bscroll from 'better-scroll'
 export default {
   name: 'CityList',
+  props: {
+    hot: Array,
+    cities: Object,
+    letter: String
+  },
   mounted () {
     this.scroll = new Bscroll(this.$refs.wrapper)
   }
