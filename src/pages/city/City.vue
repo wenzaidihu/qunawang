@@ -3,7 +3,7 @@
     <CityHeader></CityHeader>
     <CitySearch></CitySearch>
     <CityList :cities="cities" :hot="hotCities"></CityList>
-    <CityAlphabet></CityAlphabet>
+    <CityAlphabet :cities="cities"></CityAlphabet>
   </div>
 </template>
 
@@ -44,7 +44,7 @@ export default {
     }
   },
   mounted () {
-    this.getCityInfo()
+    this.getCityInfo() // 在生命周期函数mounted中调用请求数据的方法获取数据
   }
 }
 </script>
