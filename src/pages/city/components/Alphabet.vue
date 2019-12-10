@@ -16,54 +16,54 @@
 </template>
 
 <script>
+import Bscroll from 'better-scroll'
 export default {
-  name: 'CityAlphabet',
+  name: 'CitySearch',
   props: {
     cities: Object
   },
-  computed: {
-    letters () {
-      const letters = []
-      for (let i in this.cities) {
-        letters.push(i)
-      }
-      return letters
-    }
-  },
   data () {
     return {
-      touchStatus: false,
-      startY: 0,
+      keyword: '',
+      list: [],
       timer: null
     }
   },
-  updated () {
-    this.startY = this.$refs['A'][0].offsetTop
+  computed: {
+    hasNoData () {
+      return !this.list.length
+    }
+  },
+  watch: {
+    keyword () {
+      if (this.timer) {
+        clearTimeout(this.timer)
+      }
+      if (!this.keyword) {
+        this.list = []
+        return
+      }
+      this.timer = setTimeout(() => {
+        const result = []
+        for (let i in this.cities) {
+          this.cities[i].forEach((value) => {
+            if (value.spell.indexOf(this.keyword) > -1 || value.name.indexOf(this.keyword) > -1) {
+              result.push(value)
+            }
+          })
+        }
+        this.list = result
+      }, 100)
+    }
   },
   methods: {
-    handleLetterClick (e) {
-      this.$emit('change', e.target.innerText)
-    },
-    handleTouchStart () {
-      this.touchStatus = true
-    },
-    handleTouchMove (e) {
-      if (this.touchStatus) {
-        if (this.timer) {
-          clearTimeout(this.timer)
-        }
-        this.timer = setTimeout(() => {
-          const touchY = e.touches[0].clientY - 160
-          const index = Math.floor((touchY - this.startY) / 20)
-          if (index >= 0 && index < this.letters.length) {
-            this.$emit('change', this.letters[index])
-          }
-        }, 16)
-      }
-    },
-    handleTouchEnd () {
-      this.touchStatus = false
+    handleCityClick (city) {
+      this.changeCity(city)
+      this.$router.push('/')
     }
+  },
+  mounted () {
+    this.scroll = new Bscroll(this.$refs.search)
   }
 }
 </script>
