@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import Bscroll from 'better-scroll'
 export default {
   name: 'CitySearch',
   props: {
@@ -36,6 +37,12 @@ export default {
       keyword: '',
       list: [],
       timer: null
+    }
+  },
+  methods: {
+    handleCityClick (city) {
+      this.$store.commit('changeCity', city)
+      this.$router.push('/')
     }
   },
   computed: {
@@ -64,6 +71,9 @@ export default {
         this.list = result
       }, 100)
     }
+  },
+  mounted () {
+    this.scroll = new Bscroll(this.$refs.search)
   }
 }
 </script>
