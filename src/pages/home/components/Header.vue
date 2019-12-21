@@ -7,7 +7,7 @@
       <span class="iconfont serach-icon">&#xe632;</span>输入城市/景点/游玩主题
     </div>
     <router-link to="/city">
-    <div class="header-right">{{this.$store.state.city}}
+    <div class="header-right">{{this.city}}
     <span class="iconfont arrow-icon">&#xe64a;</span>
     </div>
     </router-link>
@@ -15,8 +15,12 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
-  name: ' homeheader'
+  name: ' homeheader',
+  computed: {
+    ...mapState(['city'])
+  }
 }
 </script>
 
@@ -48,11 +52,12 @@ export default {
       .serach-icon
         margin-right: .1rem
     .header-right
-      width: 1.24rem
+      min-width: 1.04rem
+      padding-left: .1rem
       float: right
       text-align: center
       color: #fff
       .arrow-icon
         font-size: .2rem
-        margin-left: .1rem
+        padding-right: .1rem
 </style>
