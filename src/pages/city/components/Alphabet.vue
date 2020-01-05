@@ -14,6 +14,7 @@
     </li>
   </ul>
 </template>
+//prevent修饰符，阻止touchstart的默认行为，防止拖动字母表时页面跟着滚动
 
 <script>
 export default {
