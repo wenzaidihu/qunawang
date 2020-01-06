@@ -8,7 +8,7 @@ module.exports = {
   dev: {
 
     // Paths fiddler charles
-    assetsSubDirectory: 'public',
+    assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
       '/api': {

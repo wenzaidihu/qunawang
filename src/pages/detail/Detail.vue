@@ -16,6 +16,8 @@ import DetailBanner from './components/Banner'
 import DetailHeader from './components/Header'
 import DetailList from './components/List'
 import axios from 'axios'
+import * as API from '../../api'
+
 export default {
   name: 'Detail',
   components: {
@@ -33,7 +35,7 @@ export default {
   },
   methods: {
     getDetailInfo () {
-      axios.get('/api/detail.json', {
+      axios.get(API.getDetailInfoApi, {
         params: {
           id: this.$route.params.id
         }
